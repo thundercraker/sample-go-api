@@ -1,0 +1,4 @@
+.idea/
+bin/
+docker/*.production
+google-cloud/

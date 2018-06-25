@@ -1,0 +1,7 @@
+{
+  "Development": true,
+  "Address": ":8080",
+  "LogName": "CommentParser",
+  "GoogleCloudProjectID": "{project-id-here}",
+  "GoogleCloudCredFile": "{cred-file-here}"
+}

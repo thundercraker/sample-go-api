@@ -1,0 +1,16 @@
+# Multi-stage build setup (https://docs.docker.com/develop/develop-images/multistage-build/)
+
+# Generic image
+FROM golang:1.6.2 AS builder
+RUN go version
+
+COPY . /go/src/commentparser/
+COPY ./google-cloud/{cred-file-here} /root/google-cloud-creds/{cred-file-here}
+WORKDIR /go/src/commentparser/
+RUN chmod -R +x scripts
+
+EXPOSE 8080
+
+# Need to get test dependencies as well (IF we want to demo the Binary-Only package)
+RUN go get -t ./...
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -a -o bin/commentparser .
